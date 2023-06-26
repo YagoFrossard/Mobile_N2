@@ -2,10 +2,10 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 export default function FotoContato({ foto, mini }) {
 
-    let fotoUri = foto ? { base64: foto } : require('./user_placeholder.jpg');
+    let fotoUri = `data:image/png;base64,${foto}`;
 
     return (
-        <Image style={mini ? styles.miniImagem : styles.maxImagem} source={fotoUri}></Image>
+        <Image style={mini ? styles.miniImagem : styles.maxImagem} source={{uri: fotoUri}}></Image>
     );
 }
 

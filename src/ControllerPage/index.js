@@ -5,6 +5,7 @@ import { StatusBar } from 'react-native';
 import LoginPage from '../LoginPage';
 import CadastroPage from '../CadastroPage';
 import MensagensPage from '../MensagensPage';
+import Conversa from '../Conversa';
 
 const Stack = createNativeStackNavigator();
 const headerHeight = Platform.OS === 'ios' ? 120 : StatusBar.currentHeight + 80;
@@ -48,6 +49,18 @@ export default function ContatosPage() {
                         height: headerHeight
                     },
                     headerBackVisible: false
+                }}></Stack.Screen>
+                <Stack.Screen name="Conversa" component={Conversa}  options={{
+                    headerTitleAlign: 'center',
+                    headerTitleStyle: {
+                        fontSize: 32,
+                        color: '#FFF'
+                    },
+                    headerStyle: {
+                        backgroundColor: '#2DBDF1',
+                        height: headerHeight
+                    },
+                    headerBackVisible: true
                 }}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
