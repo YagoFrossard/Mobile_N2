@@ -5,13 +5,11 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { enviarMensagem, pegarConversa } from '../API/api';
 import CaixaMensagem from './CaixaMensagem';
 
-//<LinearGradient colors={['#528AAE', '#00008B', '#000']} style={styles.planoDeFundo}></LinearGradient>
 export default function Conversa({ route }) {
 
     const [mensagens, setMensagens] = useState([]);
     const [texto, setTexto] = useState();
 
-    
     setTimeout(() => {
         carregarMensagens().then(mensagens => setMensagens(mensagens))
     }, 10000)

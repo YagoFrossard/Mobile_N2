@@ -68,3 +68,12 @@ export const enviarMensagem = (texto, idUsuario, idContato) => {
         .then(res => {})
         .catch(err => console.log(err))
 }
+
+export const pegarTodosUsuarios = async (login) => {
+    try {
+        const usuarios = await axios.get(`${ip}/message/buscarUsuarios/${login}`)
+        return usuarios
+    } catch (e) {
+        console.log(e)
+    }
+}
