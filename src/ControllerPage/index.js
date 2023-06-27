@@ -14,7 +14,7 @@ export default function ContatosPage() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator headerMode="screen">
+            <Stack.Navigator headerMode="screen" detachInactiveScreens={true}>
                 <Stack.Screen name="Login" component={LoginPage} options={{
                     headerTitleAlign: 'center',
                     headerTitleStyle: {

@@ -10,10 +10,12 @@ export default function Conversa({ route }) {
     const [mensagens, setMensagens] = useState([]);
     const [texto, setTexto] = useState();
 
+    /*
     setTimeout(() => {
         carregarMensagens().then(mensagens => setMensagens(mensagens))
     }, 10000)
-    
+    */
+
     async function carregarMensagens() {
         return pegarConversa(route.params.idUsuario, route.params.idContato)
             .then(({ data }) => {
@@ -27,12 +29,12 @@ export default function Conversa({ route }) {
     }
 
     const enviar = () => {
-        if (texto){
+        if (texto) {
             textoLimpo = texto.trim()
             enviarMensagem(textoLimpo, route.params.idUsuario, route.params.idContato)
             setTexto()
             carregarMensagens().then(mensagens => setMensagens(mensagens))
-        } 
+        }
     }
 
     function textoUpdate(texto) {
@@ -41,6 +43,11 @@ export default function Conversa({ route }) {
 
     useEffect(() => {
         carregarMensagens().then(mensagens => setMensagens(mensagens))
+        
+        const interval = setInterval(() => {
+            carregarMensagens().then(mensagens => setMensagens(mensagens))
+        }, 10000);
+        return () => clearInterval(interval);
     }, [])
 
     const scrollRef = useRef();
@@ -51,7 +58,7 @@ export default function Conversa({ route }) {
                 <LinearGradient colors={['#528AAE', '#00008B', '#000']} style={styles.planoDeFundo}>
                     <ScrollView style={styles.mensagensView}
                         ref={scrollRef}
-                        onContentSizeChange={() => scrollRef.current.scrollToEnd({animated: false})}>
+                        onContentSizeChange={() => scrollRef.current.scrollToEnd({ animated: false })}>
                         {mensagens.map(mensagem => {
                             return <CaixaMensagem
                                 key={mensagem.id}

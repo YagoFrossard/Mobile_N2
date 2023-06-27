@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const ip = 'http://192.168.0.139:8080'
-//const ip = 'http://bdfemasschat-env-2.eba-7p43uarw.sa-east-1.elasticbeanstalk.com'
+//const ip = 'http://192.168.0.139:8080'
+const ip = 'http://bdfemasschat-env-2.eba-7p43uarw.sa-east-1.elasticbeanstalk.com'
 
 export const gravarUsuario = (nome, avatar, email, telefone, senha) => {
     const item = {

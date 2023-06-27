@@ -18,10 +18,12 @@ export default function MensagensPage({ route }) {
         screen: screenDimensions,
     });
 
+    /*
     setTimeout(() => {
         carregarContatos().then(items => setItems(items))
         carregarUsuarios().then(usuarios => setUsuarios(usuarios))
     }, 10000)
+    */
 
     async function salvarUsuario(usuario) {
         await AsyncStorage.setItem('usuario', JSON.stringify(usuario))
@@ -48,10 +50,16 @@ export default function MensagensPage({ route }) {
     }
 
     useEffect(() => {
-        console.log(route.params)
         salvarUsuario(route.params)
+
         carregarContatos().then(items => setItems(items))
         carregarUsuarios().then(usuarios => setUsuarios(usuarios))
+
+        const interval = setInterval(() => {
+            carregarContatos().then(items => setItems(items))
+            carregarUsuarios().then(usuarios => setUsuarios(usuarios))
+        }, 10000);
+        return () => clearInterval(interval);
     }, [])
 
     return (
